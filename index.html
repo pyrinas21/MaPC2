@@ -1,35 +1,53 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-  <style>
-    h1 {
-        font-size: 20px;
-        font-family:verdana ;
-        background-color: yellow;
-    }
-  </style>
-  </head>
-  
-  <body>
-    <h1>Simple mobile device Hearing Aid</h1>
+    <head>
+        <style>
+            h1 {
+                font-size: 20px;
+                font-family:verdana ;
+                background-color: lightblue;
+            }
+        
+        
+        div#padArea {
+            float: top;
+            height: 50%;
+            background-color: violet;
+        }
+        
+        button.drumPad {
+            height: 30%;
+            margin: 3px;
+            background-color: rgb(180,180,180);
+            font-size: 6em;
+        }
+        </style>
+    </head>
     
+    <body>
+        <h1>RELAXING SOUNDS</h1>
+        
+        
+        <button id="button1">START</button>
+        <button id="button2">STOP</button>
+        
+        <div id="controls" width="100%">
+            Volume
+            <input id="cfVolume" type="range" style="width:70%"></input>
+        </div>
+
+        <div id="padArea" width="100%">
+            <button id="pad1" class="drumPad">1</button>
+            <button id="pad2" class="drumPad">2</button>
+            <button id="pad3" class="drumPad">3</button>
+            <button id="pad4" class="drumPad">4</button>
+            <button id="pad5" class="drumPad">5</button>
+            <button id="pad6" class="drumPad">6</button>
+        </div>
+        
+    </body>
     
-    <button id="button1">START</button>
-    <button id="button2">STOP</button>
-    
-    <div id="controls" width="100%">
-        Volume
-        <input id="cfVolume" type="range" style="width:70%"></input>
-    </div>
-    <div id="controls" width="100%">
-        Frequency Boost
-        <input id="cfFreqBoost" type="range" style="width:70%"></input>
-    </div>
-    
-  </body>
-  
-  <script>
-    
-  </script>
+    <script>
+        
+        </script>
 </html>
-  
