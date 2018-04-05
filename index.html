@@ -13,10 +13,7 @@
 
         
         button.Pad {
-            height: 100%;
-            margin: 3px;
-            background-color: rgb(180,180,180);
-            font-size: 6em;
+
         }
         .column {
             float: left;
@@ -24,7 +21,10 @@
         }
         .drumPad {
             width: 400px;
-            height: 200px;
+            height: 300px;
+            margin: 3px;
+            background-color: lightblue;
+            font-size: 5em;
         }
         </style>
     </head>
@@ -63,13 +63,13 @@
         var players = []; // empty array
         var pads = [];
         
-        for(var i=1; i<=4; i++)
+        for(var i=1; i<=6; i++)
         {
             pads[i] = document.getElementById("pad" + i);
             pads[i].addEventListener("mousedown", padActions);
         }
     
-        for(var c=1; c<=4; c++)
+        for(var c=1; c<=6; c++)
         {
             players[c] = document.getElementById("audio" + c);
             players[c].src = "sound" + c + ".mp3";
