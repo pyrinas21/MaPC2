@@ -18,10 +18,13 @@
             background-color: rgb(180,180,180);
             font-size: 6em;
         }
-        
+        .column {
+            float: left;
+            width: 50%;
+        }
         .drumPad {
-            width: 500px;
-            height: 300px;
+            width: 400px;
+            height: 200px;
         }
         </style>
     </head>
@@ -38,13 +41,20 @@
             <input id="cfVolume" type="range" style="width:70%"></input>
         </div>
 
+
         <div id="padArea" width="500%">
-            <button id="pad1" class="drumPad">1</button>
-            <button id="pad2" class="drumPad">2</button>
-            <button id="pad3" class="drumPad">3</button>
-            <button id="pad4" class="drumPad">4</button>
-            <button id="pad5" class="drumPad">5</button>
-            <button id="pad6" class="drumPad">6</button>
+            <div class="row">
+                <div class="column">
+                    <button id="pad1" class="drumPad">1</button>
+                    <button id="pad2" class="drumPad">2</button>
+                    <button id="pad3" class="drumPad">3</button>
+                </div>
+                <div class="column">
+                    <button id="pad4" class="drumPad">4</button>
+                    <button id="pad5" class="drumPad">5</button>
+                    <button id="pad6" class="drumPad">6</button>
+                </div>
+            </div>
         </div>
         
     </body>
