@@ -3,23 +3,25 @@
     <head>
         <style>
             h1 {
-                font-size: 20px;
-                font-family:verdana ;
-                background-color: lightblue;
+                font-size: 80px;
+                font-family:Arial ;
             }
-        
-        
-        div#padArea {
-            float: top;
-            height: 50%;
-            background-color: violet;
+        html, body
+        {
+            background: linear-gradient(to left, lightblue , violet);
         }
+
         
-        button.drumPad {
-            height: 30%;
+        button.Pad {
+            height: 100%;
             margin: 3px;
             background-color: rgb(180,180,180);
             font-size: 6em;
+        }
+        
+        .drumPad {
+            width: 500px;
+            height: 300px;
         }
         </style>
     </head>
@@ -36,7 +38,7 @@
             <input id="cfVolume" type="range" style="width:70%"></input>
         </div>
 
-        <div id="padArea" width="100%">
+        <div id="padArea" width="500%">
             <button id="pad1" class="drumPad">1</button>
             <button id="pad2" class="drumPad">2</button>
             <button id="pad3" class="drumPad">3</button>
@@ -48,6 +50,29 @@
     </body>
     
     <script>
+        var players = []; // empty array
+        var pads = [];
         
-        </script>
+        for(var i=1; i<=4; i++)
+        {
+            pads[i] = document.getElementById("pad" + i);
+            pads[i].addEventListener("mousedown", padActions);
+        }
+    
+        for(var c=1; c<=4; c++)
+        {
+            players[c] = document.getElementById("audio" + c);
+            players[c].src = "sound" + c + ".mp3";
+            players[c].load();
+        }
+    
+        function padActions(event){
+            var padThatWasClicked = event.target;
+            var padIndexInArray = pads.indexOf(padThatWasClicked);
+            
+            players[padIndexInArray].currentTime = 0; //rewind audio
+            players[padIndexInArray].play();
+        }
+    
+    </script>
 </html>
