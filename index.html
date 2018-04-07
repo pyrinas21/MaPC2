@@ -12,13 +12,11 @@
         }
 
         
-        button.Pad {
-
-        }
         .column {
             float: left;
             width: 50%;
         }
+        /*pad styling*/
         .drumPad {
             width: 400px;
             height: 300px;
@@ -26,63 +24,109 @@
             background-color: lightblue;
             font-size: 5em;
         }
+
         </style>
     </head>
     
     <body>
         <h1>RELAXING SOUNDS</h1>
         
-        
-        <button id="button1">START</button>
-        <button id="button2">STOP</button>
-        
-        <div id="controls" width="100%">
-            Volume
-            <input id="cfVolume" type="range" style="width:70%"></input>
+        <div id="AudioPlayers" width="100%">
+            <audio controls loop id="relax1"></audio>
+            <audio controls loop id="relax2"></audio>
+            <audio controls loop id="relax3"></audio>
+            <audio controls loop id="relax4"></audio>
         </div>
 
-
+        <p></p>
+        
+        
         <div id="padArea" width="500%">
             <div class="row">
                 <div class="column">
-                    <button id="pad1" class="drumPad">1</button>
-                    <button id="pad2" class="drumPad">2</button>
-                    <button id="pad3" class="drumPad">3</button>
+                    <button id="pad1" class="drumPad">Ocean</button>
+                    <button id="pad2" class="drumPad">Birds Chirping</button>
+                    <button id="pad3" class="drumPad">Storm</button>
                 </div>
                 <div class="column">
-                    <button id="pad4" class="drumPad">4</button>
-                    <button id="pad5" class="drumPad">5</button>
-                    <button id="pad6" class="drumPad">6</button>
+                    <button id="pad4" class="drumPad">Pink Noise</button>
+                    <button id="pad5" class="drumPad">Classical Music1</button>
+                    <button id="stopAll" class="drumPad">Stop All</button>
                 </div>
             </div>
         </div>
-        
-    </body>
+        <div id="videos">
+            <iframe id="relax5" width="50%" height="100%" src="https://www.youtube.com/embed/hSnD30bcAS8?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=false></iframe>
+        </div>
+      
     
-    <script>
-        var players = []; // empty array
-        var pads = [];
-        
-        for(var i=1; i<=6; i++)
-        {
-            pads[i] = document.getElementById("pad" + i);
-            pads[i].addEventListener("mousedown", padActions);
-        }
-    
-        for(var c=1; c<=6; c++)
-        {
-            players[c] = document.getElementById("audio" + c);
-            players[c].src = "sound" + c + ".mp3";
-            players[c].load();
-        }
-    
-        function padActions(event){
-            var padThatWasClicked = event.target;
-            var padIndexInArray = pads.indexOf(padThatWasClicked);
-            
-            players[padIndexInArray].currentTime = 0; //rewind audio
-            players[padIndexInArray].play();
-        }
-    
-    </script>
+                <script>
+                    var players = []; // empty array
+                    var pads = [];
+                    
+                    for(var i=1; i<=4; i++)
+                    {
+                        pads[i] = document.getElementById("pad" + i);
+                        pads[i].addEventListener("mousedown", padActions);
+                    }
+                    //initialise audio players
+                    for(var c=1; c<=4; c++)
+                    {
+                        players[c] = document.getElementById("relax" + c);
+                        players[c].src = "relax" + c + ".mp3";
+                        players[c].load();
+                    }
+                
+                    //initialise youtube players. Used a loop for easier future extension
+                    for(var c=5; c<=5; c++)
+                    {
+                        players[c] = document.getElementById("relax" + c);
+                        //players[c].src = "relax" + c + ".mp3";
+                        //layers[c].load();
+                    }
+                
+                    //
+                    function padActions(event)
+                    {
+                        var padThatWasClicked = event.target;
+                        var padIndexInArray = pads.indexOf(padThatWasClicked);
+                        var prevPlayer
+                        for(var t=1; t<=5; t++)
+                        {
+                            if(players[t].play)
+                            {
+                                players[t].pause();
+                                players[t].currentTime = 0;
+                            }
+                        }
+                        players[padIndexInArray].currentTime = 0;
+                        players[padIndexInArray].play();
+                        
+                        if(padIndexInArray==5 || padIndexInArray==6)
+                        {
+                            players[padIndexInArray].playVideo();
+                        }
+                        else
+                        {
+                            players[padIndexInArray].currentTime = 0;
+                            players[padIndexInArray].play();
+                        }
+                        
+                    }
+                
+                
+                    //function triggered by "stop all" button to stop all audio
+                    
+                    stopAll.addEventListener("click", buttonActions);
+                    function buttonActions(event)
+                    {
+                        for(var c=1; c<=6; c++)
+                        {
+                            players[c].pause();
+                            players[c].currentTime = 0;
+                        }
+                    }
+                    
+                </script>
+        </body>
 </html>
