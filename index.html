@@ -56,15 +56,15 @@
             </div>
         </div>
         <div id="videos">
-            <iframe id="relax5" width="50%" height="100%" src="https://www.youtube.com/embed/hSnD30bcAS8?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=false></iframe>
+            <iframe id="relax5" width="50%" height="100%" src="https://www.youtube.com/embed/sDuadJovyBE?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=false></iframe>
         </div>
       
     
                 <script>
                     var players = []; // empty array
                     var pads = [];
-                    
-                    for(var i=1; i<=4; i++)
+
+                    for(var i=1; i<=5; i++)
                     {
                         pads[i] = document.getElementById("pad" + i);
                         pads[i].addEventListener("mousedown", padActions);
@@ -77,21 +77,13 @@
                         players[c].load();
                     }
                 
-                    //initialise youtube players. Used a loop for easier future extension
-                    for(var c=5; c<=5; c++)
-                    {
-                        players[c] = document.getElementById("relax" + c);
-                        //players[c].src = "relax" + c + ".mp3";
-                        //layers[c].load();
-                    }
-                
-                    //
+                    
                     function padActions(event)
                     {
                         var padThatWasClicked = event.target;
                         var padIndexInArray = pads.indexOf(padThatWasClicked);
                         var prevPlayer
-                        for(var t=1; t<=5; t++)
+                        for(var t=1; t<=4; t++)
                         {
                             if(players[t].play)
                             {
@@ -99,15 +91,15 @@
                                 players[t].currentTime = 0;
                             }
                         }
-                        players[padIndexInArray].currentTime = 0;
-                        players[padIndexInArray].play();
-                        
-                        if(padIndexInArray==5 || padIndexInArray==6)
+
+
+                        if(padIndexInArray==5)
                         {
-                            players[padIndexInArray].playVideo();
+                            //relax5.playVideo();
                         }
                         else
                         {
+                            //relax5.stopVideo();
                             players[padIndexInArray].currentTime = 0;
                             players[padIndexInArray].play();
                         }
@@ -124,6 +116,7 @@
                         {
                             players[c].pause();
                             players[c].currentTime = 0;
+                            //relax5.stopVideo;
                         }
                     }
                     
