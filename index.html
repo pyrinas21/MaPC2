@@ -17,14 +17,20 @@
             width: 50%;
         }
         /*pad styling*/
-        .drumPad {
+        .relaxTrigger {
             width: 400px;
             height: 300px;
             margin: 3px;
             background-color: lightblue;
             font-size: 5em;
         }
-
+        .stopTrigger {
+            width: 400px;
+            height: 300px;
+            margin: 3px;
+            background-color: red;
+            font-size: 5em;
+        }
         </style>
     </head>
     
@@ -36,6 +42,7 @@
             <audio loop id="relax2"></audio>
             <audio loop id="relax3"></audio>
             <audio loop id="relax4"></audio>
+            <audio loop id="relax5"></audio>
         </div>
 
         <p></p>
@@ -44,19 +51,18 @@
         <div id="padArea" width="500%">
             <div class="row">
                 <div class="column">
-                    <button id="pad1" class="drumPad">Ocean</button>
-                    <button id="pad2" class="drumPad">Birds Chirping</button>
-                    <button id="pad3" class="drumPad">Storm</button>
+                    <button id="pad1" class="relaxTrigger">Ocean</button>
+                    <button id="pad2" class="relaxTrigger">Birds Chirping</button>
+                    <button id="pad3" class="relaxTrigger">Storm</button>
                 </div>
                 <div class="column">
-                    <button id="pad4" class="drumPad">Pink Noise</button>
-                    <button id="pad5" class="drumPad">Classical Music1</button>
-                    <button id="stopAll" class="drumPad">Stop All</button>
+                    <button id="pad4" class="relaxTrigger">Pink Noise</button>
+                    <button id="pad5" class="relaxTrigger">Wind Chimes</button>
+                    <button id="stopAll" class="stopTrigger">Stop All</button>
                 </div>
             </div>
         </div>
-        <div id="videos">
-            <iframe id="relax5" width="50%" height="100%" src="https://www.youtube.com/embed/sDuadJovyBE?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=false></iframe>
+
         </div>
       
     
@@ -70,7 +76,7 @@
                         pads[i].addEventListener("mousedown", padActions);
                     }
                     //initialise audio players
-                    for(var c=1; c<=4; c++)
+                    for(var c=1; c<=5; c++)
                     {
                         players[c] = document.getElementById("relax" + c);
                         players[c].src = "relax" + c + ".mp3";
@@ -83,7 +89,7 @@
                         var padThatWasClicked = event.target;
                         var padIndexInArray = pads.indexOf(padThatWasClicked);
                         var prevPlayer
-                        for(var t=1; t<=4; t++)
+                        for(var t=1; t<=5; t++)
                         {
                             if(players[t].play)
                             {
@@ -91,24 +97,12 @@
                                 players[t].currentTime = 0;
                             }
                         }
-
-
-                        if(padIndexInArray==5)
-                        {
-                            //relax5.playVideo();
-                        }
-                        else
-                        {
-                            //relax5.stopVideo();
                             players[padIndexInArray].currentTime = 0;
                             players[padIndexInArray].play();
-                        }
-                        
                     }
                 
                 
                     //function triggered by "stop all" button to stop all audio
-                    
                     stopAll.addEventListener("click", buttonActions);
                     function buttonActions(event)
                     {
@@ -116,7 +110,6 @@
                         {
                             players[c].pause();
                             players[c].currentTime = 0;
-                            //relax5.stopVideo;
                         }
                     }
                     
